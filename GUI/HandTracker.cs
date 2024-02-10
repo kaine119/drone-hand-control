@@ -17,12 +17,17 @@ internal static class HandTracker
     internal static extern bool stop_polling();
     
     [DllImport("HandTracker.dll")]
-    internal static extern float get_roll();
+    internal static extern float get_right_hand_roll();
     
     [DllImport("HandTracker.dll")]
-    internal static extern float get_pitch();
+    internal static extern float get_right_hand_pitch();
     
     [DllImport("HandTracker.dll")]
-    internal static extern float get_yaw();
+    internal static extern float get_right_hand_yaw();
+ 
+    [DllImport("HandTracker.dll")]
+    internal static extern float get_left_hand_grab();
     
+    [DllImport("HandTracker.dll")]
+    internal static extern float get_left_hand_pinch();
 }

@@ -35,13 +35,17 @@ namespace GUI
 
         private void TickEventHandler(object? sender, EventArgs e)
         {
-            float pitch = HandTracker.get_pitch();
-            float roll = HandTracker.get_roll();
-            float yaw = HandTracker.get_yaw();
+            var pitch = HandTracker.get_right_hand_pitch();
+            var roll = HandTracker.get_right_hand_roll();
+            var yaw = HandTracker.get_right_hand_yaw();
+            var leftGrab = HandTracker.get_left_hand_grab();
+            var leftPinch = HandTracker.get_left_hand_pinch();
 
             _vm.HandRoll = roll * 50 + 50;
             _vm.HandYaw = yaw * 50 + 50;
             _vm.HandPitch = pitch * 50 + 50;
+            _vm.LeftHandGrab = leftGrab * 50 + 50;
+            _vm.LeftHandPinch = leftPinch * 50 + 50;
         }
     }
 }

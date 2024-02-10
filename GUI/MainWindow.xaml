@@ -16,8 +16,25 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="LeapMotionController Controller" FontSize="24" Margin="8,0,0,0"></TextBlock>
-        <GroupBox Grid.Row="1" Grid.Column="0" Header="GroupBox">
+        <TextBlock Text="Leap Motion Controller Drone Controller" FontSize="24" Margin="8,0,0,0"/>
+        <GroupBox Grid.Row="1" Grid.Column="0" Header="Left Hand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,5,0,0">Left Grab</TextBlock>
+                <ProgressBar Grid.Row="0" Grid.Column="1" Value="{Binding LeftHandGrab}" Margin="0,5,0,0" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5,0,0">Left Pinch</TextBlock>
+                <ProgressBar Grid.Row="1" Grid.Column="1" Value="{Binding LeftHandPinch}" Margin="0,5,0,0" />
+                
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Left Hand">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
@@ -33,12 +50,12 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Value="{Binding HandRoll}"
-                    Margin="0,5,0,0"
-                    Name="RollBar" />
+                    Margin="0,5,0,0" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5,0,0">Pitch</TextBlock>
                 <ProgressBar Grid.Row="1" Grid.Column="1" Value="{Binding HandPitch}" Margin="0,5,0,0" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,5,0,0">Yaw</TextBlock>
                 <ProgressBar Grid.Row="2" Grid.Column="1" Value="{Binding HandYaw}" Margin="0,5,0,0" />
+                
             </Grid>
         </GroupBox>
 
