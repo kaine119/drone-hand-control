@@ -16,6 +16,10 @@ static HANDLE thread;
 static DWORD thread_handle;
 
 
+static float left_hand_x;
+static float left_hand_y;
+static float left_hand_z;
+
 static DWORD WINAPI run_thread(LPVOID params)
 {
     while (is_thread_running) {
@@ -47,11 +51,12 @@ static DWORD WINAPI run_thread(LPVOID params)
             {
                 left_hand_pinch = hand.pinch_strength;
                 left_hand_grab = hand.grab_strength;
+                const LEAP_VECTOR left_hand_position = hand.palm.position;
+                left_hand_x = left_hand_position.x;
+                left_hand_y = left_hand_position.y;
+                left_hand_z = left_hand_position.z;
             }
         }
-        
-        const LEAP_VECTOR hand_direction = message.tracking_event->pHands->palm.direction;
-        const LEAP_VECTOR hand_normal = message.tracking_event->pHands->palm.normal;
         
     }
     return 0;
@@ -67,6 +72,9 @@ extern "C" {
     __declspec(dllexport) float __cdecl get_right_hand_yaw ();
     __declspec(dllexport) float __cdecl get_left_hand_pinch ();
     __declspec(dllexport) float __cdecl get_left_hand_grab ();
+    __declspec(dllexport) float __cdecl get_left_hand_x ();
+    __declspec(dllexport) float __cdecl get_left_hand_y ();
+    __declspec(dllexport) float __cdecl get_left_hand_z ();
 }
 
 FLOAT get_right_hand_roll() { return right_hand_roll; }
@@ -74,6 +82,9 @@ FLOAT get_right_hand_pitch() { return right_hand_pitch; }
 FLOAT get_right_hand_yaw() { return right_hand_yaw; }
 FLOAT get_left_hand_pinch() { return left_hand_pinch; }
 FLOAT get_left_hand_grab() { return left_hand_grab; }
+FLOAT get_left_hand_x() { return left_hand_x; }
+FLOAT get_left_hand_y() { return left_hand_y; }
+FLOAT get_left_hand_z() { return left_hand_z; }
 
 BOOL initialize_connection()
 {

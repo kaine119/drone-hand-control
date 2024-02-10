@@ -16,10 +16,13 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Leap Motion Controller Drone Controller" FontSize="24" Margin="8,0,0,0"/>
+        <TextBlock Grid.ColumnSpan="2" Text="Leap Motion Controller Drone Controller" FontSize="24" Margin="8,0,0,0"/>
         <GroupBox Grid.Row="1" Grid.Column="0" Header="Left Hand">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
+                    <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
                     <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
                     <RowDefinition Height="Auto" MinHeight="15.96"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -32,6 +35,16 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5,0,0">Left Pinch</TextBlock>
                 <ProgressBar Grid.Row="1" Grid.Column="1" Value="{Binding LeftHandPinch}" Margin="0,5,0,0" />
                 
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,5,0,0">Left X</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding LeftHandX}"></TextBlock>
+                <!-- <ProgressBar Grid.Row="2" Grid.Column="1" Value="{Binding LeftHandX}" Margin="0,5,0,0" /> -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,5,0,0">Left Y</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding LeftHandY}"></TextBlock>
+                <!-- <ProgressBar Grid.Row="3" Grid.Column="1" Value="{Binding LeftHandY}" Margin="0,5,0,0" /> -->
+                <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,5,0,0">Left Z</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding LeftHandZ}"></TextBlock>
+                <!-- <ProgressBar Grid.Row="4" Grid.Column="1" Value="{Binding LeftHandZ}" Margin="0,5,0,0" /> -->
+
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" Grid.Column="1" Header="Left Hand">

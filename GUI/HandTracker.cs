@@ -30,4 +30,13 @@ internal static class HandTracker
     
     [DllImport("HandTracker.dll")]
     internal static extern float get_left_hand_pinch();
+    
+    [DllImport("HandTracker.dll")]
+    internal static extern float get_left_hand_x();
+    
+    [DllImport("HandTracker.dll")]
+    internal static extern float get_left_hand_y();
+    
+    [DllImport("HandTracker.dll")]
+    internal static extern float get_left_hand_z();
 }

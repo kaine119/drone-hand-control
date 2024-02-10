@@ -10,6 +10,9 @@ public class MainWindowViewmodel : INotifyPropertyChanged
     private float _handYaw;
     private float _leftHandPinch;
     private float _leftHandGrab;
+    private float _leftHandX;
+    private float _leftHandY;
+    private float _leftHandZ;
 
     public event PropertyChangedEventHandler? PropertyChanged;
  
@@ -64,6 +67,39 @@ public class MainWindowViewmodel : INotifyPropertyChanged
         {
             if (value.Equals(_leftHandGrab)) return;
             _leftHandGrab = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public float LeftHandX
+    {
+        get => _leftHandX;
+        set
+        {
+            if (value.Equals(_leftHandX)) return;
+            _leftHandX = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public float LeftHandY
+    {
+        get => _leftHandY;
+        set
+        {
+            if (value.Equals(_leftHandY)) return;
+            _leftHandY = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public float LeftHandZ
+    {
+        get => _leftHandZ;
+        set
+        {
+            if (value.Equals(_leftHandZ)) return;
+            _leftHandZ = value;
             OnPropertyChanged();
         }
     }
