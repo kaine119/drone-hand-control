@@ -8,7 +8,7 @@ static LEAP_CONNECTION connection;
 static HANDLE thread;
 static DWORD thread_handle;
 
-
+static int right_hand_count = 0; // nominally 1
 static float right_hand_roll;
 static float right_hand_pitch;
 static float right_hand_yaw;
@@ -18,6 +18,7 @@ static float right_hand_z;
 static float right_hand_grab;
 static float right_hand_pinch;
 
+static int left_hand_count;
 static float left_hand_x;
 static float left_hand_y;
 static float left_hand_z;
@@ -44,12 +45,16 @@ static DWORD WINAPI run_thread(LPVOID params)
         }
 
         const LEAP_HAND* hands = message.tracking_event->pHands;
-        const uint32_t nHands = message.tracking_event->nHands;
-        for (uint32_t i = 0; i < nHands; i++)
+        const uint32_t n_hands = message.tracking_event->nHands;
+        right_hand_count = 0;
+        left_hand_count = 0;
+        
+        for (uint32_t i = 0; i < n_hands; i++)
         {
             const LEAP_HAND hand = hands[i];
             if (hand.type == eLeapHandType_Right)
             {
+                right_hand_count += 1;
                 const LEAP_VECTOR normal = hand.palm.normal;
                 const LEAP_VECTOR direction = hand.palm.direction;
                 const LEAP_VECTOR position = hand.palm.position;
@@ -63,6 +68,7 @@ static DWORD WINAPI run_thread(LPVOID params)
                 right_hand_pinch = hand.pinch_strength;
             } else
             {
+                left_hand_count += 1;
                 const LEAP_VECTOR normal = hand.palm.normal;
                 const LEAP_VECTOR direction = hand.palm.direction;
                 const LEAP_VECTOR position = hand.palm.position;
@@ -87,6 +93,8 @@ extern "C" {
     __declspec(dllexport) void __cdecl start_polling ();
     __declspec(dllexport) void __cdecl stop_polling ();
 
+    
+    __declspec(dllexport) int __cdecl get_right_hand_count ();
     __declspec(dllexport) float __cdecl get_right_hand_x ();
     __declspec(dllexport) float __cdecl get_right_hand_y ();
     __declspec(dllexport) float __cdecl get_right_hand_z ();
@@ -96,6 +104,7 @@ extern "C" {
     __declspec(dllexport) float __cdecl get_right_hand_pinch ();
     __declspec(dllexport) float __cdecl get_right_hand_grab ();
     
+    __declspec(dllexport) int __cdecl get_left_hand_count ();
     __declspec(dllexport) float __cdecl get_left_hand_x ();
     __declspec(dllexport) float __cdecl get_left_hand_y ();
     __declspec(dllexport) float __cdecl get_left_hand_z ();
@@ -106,6 +115,7 @@ extern "C" {
     __declspec(dllexport) float __cdecl get_left_hand_grab ();
 }
 
+INT get_right_hand_count() { return right_hand_count; }
 FLOAT get_right_hand_x() { return right_hand_x; }
 FLOAT get_right_hand_y() { return right_hand_y; }
 FLOAT get_right_hand_z() { return right_hand_z; }
@@ -115,6 +125,7 @@ FLOAT get_right_hand_yaw() { return right_hand_yaw; }
 FLOAT get_right_hand_pinch() { return right_hand_pinch; }
 FLOAT get_right_hand_grab() { return right_hand_grab; }
 
+INT get_left_hand_count() { return left_hand_count; }
 FLOAT get_left_hand_x() { return left_hand_x; }
 FLOAT get_left_hand_y() { return left_hand_y; }
 FLOAT get_left_hand_z() { return left_hand_z; }

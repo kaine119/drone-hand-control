@@ -4,25 +4,6 @@ using System.Runtime.InteropServices;
 
 namespace GUI;
 
-record Hand
-{
-    public enum Chirality
-    {
-        Left,
-        Right
-    }
-
-    public Chirality Type;
-    public float X { get; set; }
-    public float Y { get; set; }
-    public float Z { get; set; }
-    public float Roll { get; set; }
-    public float Pitch { get; set; }
-    public float Yaw { get; set; }
-    public float GrabStrength { get; set; }
-    public float PinchStrength { get; set; }
-}
-
 internal static class HandTracker
 {
     #region DLL imports - connection management
@@ -44,6 +25,9 @@ internal static class HandTracker
 
     #region DLL imports - getters
 
+    [DllImport("HandTracker.dll")]
+    internal static extern int get_right_hand_count();
+    
     [DllImport("HandTracker.dll")]
     internal static extern float get_right_hand_x();
 
@@ -69,6 +53,9 @@ internal static class HandTracker
     internal static extern float get_right_hand_pinch();
 
 
+    [DllImport("HandTracker.dll")]
+    internal static extern int get_left_hand_count();
+    
     [DllImport("HandTracker.dll")]
     internal static extern float get_left_hand_x();
 
@@ -125,4 +112,7 @@ internal static class HandTracker
 
         return new Tuple<Hand, Hand>(leftHand, rightHand);
     }
+
+    public static int LeftHandCount() => get_left_hand_count();
+    public static int RightHandCount() => get_right_hand_count();
 }
