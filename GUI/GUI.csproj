@@ -14,4 +14,13 @@
       <PackageReference Include="System.IO.Ports" Version="9.0.0-preview.1.24080.9" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="MainWindowViewmodel.cs">
+        <DependentUpon>MainWindow.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="RawInputWindowViewmodel.cs">
+        <DependentUpon>RawInputWindow.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

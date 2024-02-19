@@ -1,0 +1,150 @@
+﻿<Window x:Class="GUI.RawInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="RawInputWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance {x:Type local:RawInputWindowViewmodel}}">
+    <Window.Resources>
+        <local:ValidHandsToLabelConverter x:Key="ValidityLabel" />
+        <local:ValidHandsToColorConverter x:Key="ValidityColor" />
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <TextBox Grid.ColumnSpan="2" FontSize="24">Raw Input View</TextBox>
+        
+        <GroupBox Grid.Row="1" Grid.Column="0" Header="Left hand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox 
+                    FontSize="20" 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    TextAlignment="Center" 
+                    Background="{Binding Path=LeftHandValid, Converter={StaticResource ValidityColor}}"
+                    Text="{Binding Path=LeftHandValid, Converter={StaticResource ValidityLabel}}">
+                    
+                </TextBox>
+                <StackPanel Height="Auto" Grid.Row="1" Grid.Column="0">
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="X" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding LeftHand.X}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Y" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding LeftHand.Y}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Z" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding LeftHand.Z}"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Height="Auto" Grid.Row="1" Grid.Column="1">
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Roll" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding LeftHand.Roll}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Pitch" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding LeftHand.Pitch}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Yaw" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding LeftHand.Yaw}"/>
+                    </DockPanel>
+                </StackPanel>
+                <DockPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="200pt">
+                    <TextBlock Margin="10" Width="60pt" Text="Grip strength" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding LeftHand.GrabStrength}"/>
+                </DockPanel>
+                <DockPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Width="200pt">
+                    <TextBlock Margin="10" Width="60pt" Text="Pinch strength" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding LeftHand.PinchStrength}"/>
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Right hand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox 
+                    FontSize="20" 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    TextAlignment="Center" 
+                    Background="{Binding Path=RightHandValid, Converter={StaticResource ValidityColor}}"
+                    Text="{Binding Path=RightHandValid, Converter={StaticResource ValidityLabel}}">
+                </TextBox>
+                <StackPanel Height="Auto" Grid.Row="1" Grid.Column="0">
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="X" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding RightHand.X}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Y" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding RightHand.Y}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Z" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding RightHand.Z}"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Height="Auto" Grid.Row="1" Grid.Column="1">
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Roll" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding RightHand.Roll}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Pitch" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding RightHand.Pitch}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock Margin="10" Width="25pt" Text="Yaw" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding RightHand.Yaw}"/>
+                    </DockPanel>
+                </StackPanel>
+                <DockPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="200pt">
+                    <TextBlock Margin="10" Width="60pt" Text="Grip strength" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding RightHand.GrabStrength}"/>
+                </DockPanel>
+                <DockPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Width="200pt">
+                    <TextBlock Margin="10" Width="60pt" Text="Pinch strength" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding RightHand.PinchStrength}"/>
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+    
+</Window>

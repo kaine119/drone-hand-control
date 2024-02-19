@@ -113,6 +113,7 @@ internal static class HandTracker
         return new Tuple<Hand, Hand>(leftHand, rightHand);
     }
 
-    public static int LeftHandCount() => get_left_hand_count();
-    public static int RightHandCount() => get_right_hand_count();
+    public static int LeftHandCount => get_left_hand_count();
+
+    public static int RightHandCount => get_right_hand_count();
 }
