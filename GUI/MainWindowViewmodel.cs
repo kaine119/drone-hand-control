@@ -1,110 +1,51 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace GUI;
 
-public class MainWindowViewmodel : INotifyPropertyChanged
+public sealed class MainWindowViewmodel : INotifyPropertyChanged
 {
-    private float _handRoll;
-    private float _handPitch;
-    private float _handYaw;
-    private float _leftHandPinch;
-    private float _leftHandGrab;
-    private float _leftHandX;
-    private float _leftHandY;
-    private float _leftHandZ;
-
+    private HandValid _leftHandValid;
+    private HandValid _rightHandValid;
+    private RCValues _rcValues = new();
     public event PropertyChangedEventHandler? PropertyChanged;
- 
-    public float HandRoll
+
+    public HandValid LeftHandValid
     {
-        get => _handRoll;
+        get => _leftHandValid;
         set
         {
-            if (value.Equals(_handRoll)) return;
-            _handRoll = value;
+            if (Equals(value, _leftHandValid)) return;
+            _leftHandValid = value;
             OnPropertyChanged();
         }
     }
 
-    public float HandPitch
+    public HandValid RightHandValid
     {
-        get => _handPitch;
+        get => _rightHandValid;
         set
         {
-            if (value.Equals(_handPitch)) return;
-            _handPitch = value;
+            if (value == _rightHandValid) return;
+            _rightHandValid = value;
             OnPropertyChanged();
         }
     }
 
-    public float HandYaw
+    public RCValues RcValues
     {
-        get => _handYaw;
+        get => _rcValues;
         set
         {
-            if (value.Equals(_handYaw)) return;
-            _handYaw = value;
+            if (Equals(value, _rcValues)) return;
+            _rcValues = value;
             OnPropertyChanged();
         }
     }
 
-    public float LeftHandPinch
-    {
-        get => _leftHandPinch;
-        set
-        {
-            if (value.Equals(_leftHandPinch)) return;
-            _leftHandPinch = value;
-            OnPropertyChanged();
-        }
-    }
 
-    public float LeftHandGrab
-    {
-        get => _leftHandGrab;
-        set
-        {
-            if (value.Equals(_leftHandGrab)) return;
-            _leftHandGrab = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public float LeftHandX
-    {
-        get => _leftHandX;
-        set
-        {
-            if (value.Equals(_leftHandX)) return;
-            _leftHandX = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public float LeftHandY
-    {
-        get => _leftHandY;
-        set
-        {
-            if (value.Equals(_leftHandY)) return;
-            _leftHandY = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public float LeftHandZ
-    {
-        get => _leftHandZ;
-        set
-        {
-            if (value.Equals(_leftHandZ)) return;
-            _leftHandZ = value;
-            OnPropertyChanged();
-        }
-    }
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

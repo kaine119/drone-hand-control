@@ -21,6 +21,9 @@
       <Compile Update="RawInputWindowViewmodel.cs">
         <DependentUpon>RawInputWindow.xaml</DependentUpon>
       </Compile>
+      <Compile Update="CalibrationWindowViewmodel.cs">
+        <DependentUpon>CalibrationWindow.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

@@ -40,7 +40,7 @@ static DWORD WINAPI run_thread(LPVOID params)
             std::cout << "Something went wrong!" << '\n';
             return 1;
         }
-        if (message.device_id == 0 || message.tracking_event->nHands == 0) {
+        if (message.device_id == 0) {
             continue;
         }
 

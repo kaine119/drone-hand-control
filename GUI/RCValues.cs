@@ -1,70 +1,137 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-class RCValues
+public class RCValues : INotifyPropertyChanged
 {
-    public byte roll;
-    public byte pitch;
-    public byte throttle;
-    public byte yaw;
-    public byte arm;
-    public byte grab;
-    private byte cam;
-    private byte kill;
-    private byte mode;
+    private int _roll = 0;
+    private int _pitch = 0;
+    private int _throttle = 0;
+    private int _yaw = 0;
+    private int _arm = 0;
+    private int _grab = 0;
+    private int _cam = 0;
+    private int _kill = 0;
+    private int _mode = 0;
 
-    public byte Roll
+    public List<byte> AsList =>
+    [
+        (byte)Roll, (byte)Pitch, (byte)Throttle, (byte)Yaw, (byte)Arm, (byte)Mode, (byte)Kill, (byte)Cam, (byte)Grab
+    ];
+
+
+    public int Roll
     {
-        get => roll;
-        set => roll = value > 100 ? (byte)100 : value;
+        get => _roll;
+        set
+        {
+            if (value == _roll) return;
+            _roll = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
     }
 
-    public byte Pitch
+    public int Pitch
     {
-        get => pitch;
-        set => pitch = value > 100 ? (byte)100 : value;
+        get => _pitch;
+        set
+        {
+            if (value == _pitch) return;
+            _pitch = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
     }
 
-    public byte Throttle
+    public int Throttle
     {
-        get => throttle;
-        set => throttle = value > 100 ? (byte)100 : value;
+        get => _throttle;
+        set
+        {
+            if (value == _throttle) return;
+            _throttle = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
     }
 
-    public byte Yaw
+    public int Yaw
     {
-        get => yaw;
-        set => yaw = value > 100 ? (byte)100 : value;
+        get => _yaw;
+        set
+        {
+            if (value == _yaw) return;
+            _yaw = value;
+            OnPropertyChanged();
+        }
     }
 
-    public byte Arm
+    public int Arm
     {
-        get => arm;
-        set => arm = value > 100 ? (byte)100 : value;
+        get => _arm;
+        set
+        {
+            if (value == _arm) return;
+            _arm = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
     }
 
-    public byte Grab
+    public int Grab
     {
-        get => grab;
-        set => grab = value > 100 ? (byte)100 : value;
-    }
-    
-    public byte Cam
-    {
-        get => cam;
-        set => cam = value > 100 ? (byte)100 : value;
-    }
-
-    public byte Kill
-    {
-        get => kill;
-        set => kill = value > 100 ? (byte)100 : value;
+        get => _grab;
+        set
+        {
+            if (value == _grab) return;
+            _grab = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
     }
 
-    public byte Mode
+    public int Cam
     {
-        get => mode;
-        set => mode = value > 100 ? (byte)100 : value;
+        get => _cam;
+        set
+        {
+            if (value == _cam) return;
+            _cam = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
     }
 
-    public List<byte> AsList => [roll, pitch, throttle, pitch, arm, mode, kill, cam, grab];
+    public int Kill
+    {
+        get => _kill;
+        set
+        {
+            if (value == _kill) return;
+            _kill = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
+    }
+
+    public int Mode
+    {
+        get => _mode;
+        set
+        {
+            if (value == _mode) return;
+            _mode = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(AsList));
+        }
+    }
+
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

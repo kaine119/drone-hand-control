@@ -7,19 +7,115 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance {x:Type local:MainWindowViewmodel}}">
+    <Window.Resources>
+        <local:ValidHandsToColorConverter x:Key="ValidityColor"></local:ValidHandsToColorConverter>
+        <local:ValidHandsToLabelConverter x:Key="ValidityLabel"></local:ValidHandsToLabelConverter>
+    </Window.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="2" Text="Leap Motion Controller Drone Controller" FontSize="24" Margin="8,0,0,0"/>
-        
+        <TextBlock Grid.ColumnSpan="2" Text="Leap Motion Controller Drone Controller" FontSize="24" Margin="8,0,0,0" />
 
-        <!-- <GroupBox Grid.Row="1" Grid.Column="1" Header="GroupBox"></GroupBox> -->
+        <GroupBox Grid.Row="1" Grid.Column="0" Header="Throttle + Yaw">
+            <DockPanel>
+                <TextBox
+                    FontSize="20"
+                    DockPanel.Dock="Top"
+                    TextAlignment="Center"
+                    Background="{Binding Path=LeftHandValid, Converter={StaticResource ValidityColor}}"
+                    Text="{Binding Path=LeftHandValid, Converter={StaticResource ValidityLabel}}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <ProgressBar Orientation="Vertical" Height="110" Width="20px"
+                                     Value="{Binding RcValues.Throttle}" />
+                        <TextBlock VerticalAlignment="Center" Text="Throttle">
+                            <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock Text="Yaw" HorizontalAlignment="Center"></TextBlock>
+                        <ProgressBar Orientation="Horizontal"  Width="150" Height="20px"
+                                     Value="{Binding RcValues.Yaw}" />
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="Arm" HorizontalAlignment="Center" />
+                        <ProgressBar Orientation="Horizontal"  Width="150" Height="20px"
+                                     Value="{Binding RcValues.Arm}" />
+                        <TextBlock Text="Grab" HorizontalAlignment="Center" />
+                        <ProgressBar Orientation="Horizontal"  Width="150" Height="20px"
+                                     Value="{Binding RcValues.Grab}" />
+                    </StackPanel>
+                    
+                    
+                </Grid>
+            </DockPanel>
+
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Pitch + Roll">
+            <DockPanel>
+                <TextBox
+                    FontSize="20"
+                    DockPanel.Dock="Top"
+                    TextAlignment="Center"
+                    Background="{Binding Path=RightHandValid, Converter={StaticResource ValidityColor}}"
+                    Text="{Binding Path=RightHandValid, Converter={StaticResource ValidityLabel}}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <ProgressBar Orientation="Vertical" Height="110" Width="20px"
+                                         Value="{Binding RcValues.Pitch}" />
+                        <TextBlock VerticalAlignment="Center" Text="Pitch">
+                            <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0 ">
+                        <TextBlock HorizontalAlignment="Center" Text="Roll"/>
+                        <ProgressBar Orientation="Horizontal" Width="150" Height="20px"
+                                     Value="{Binding RcValues.Roll}" />
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal"
+                    FlowDirection="RightToLeft"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    Grid.Column="0">
+            <Button Click="OpenRawInputWindow_ButtonOnClick" Margin="2">Open raw input window</Button>
+            <Button Click="OpenCalibrationWindow_ButtonOnClick" Margin="2">Calibrate</Button>
+        </StackPanel>
 
     </Grid>
 </Window>
