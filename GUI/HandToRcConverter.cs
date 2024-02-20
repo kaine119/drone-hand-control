@@ -17,7 +17,7 @@ public class HandToRcConverter
             Throttle = InterpolateValues(-LeftHand.Z, Calibrations.Throttle), // Throttle
             Yaw = InterpolateValues(RightHand.Yaw, Calibrations.Yaw),
             Arm = LeftHand.GrabStrength > 0.7 ? 100 : 0,
-            Mode = 0,
+            Mode = 50,
             Kill = 0,
             Cam = 0,
             Grab = LeftHand.PinchStrength > 0.7 ? 100 : 0
