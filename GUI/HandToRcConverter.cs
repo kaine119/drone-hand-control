@@ -15,7 +15,7 @@ public class HandToRcConverter
             Roll = InterpolateValues(RightHand.Roll, Calibrations.Roll), // Roll
             Pitch = InterpolateValues(RightHand.Pitch, Calibrations.Pitch), // Pitch
             Throttle = InterpolateValues(-LeftHand.Z, Calibrations.Throttle), // Throttle
-            Yaw = InterpolateValues(RightHand.Yaw, Calibrations.Yaw),
+            Yaw = InterpolateValues(LeftHand.Roll, Calibrations.Yaw),
             Arm = LeftHand.GrabStrength > 0.7 ? 100 : 0,
             Mode = 50,
             Kill = 0,

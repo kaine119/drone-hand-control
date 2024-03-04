@@ -120,16 +120,16 @@ public partial class CalibrationWindow : Window
                     switch (_currentField % 3)
                     {
                         case 0:
-                            Debug.WriteLine("Setting Yaw zero = {0}", _rightHand.Yaw);
-                            Calibrations.Yaw.Zero = _rightHand.Yaw;
+                            Debug.WriteLine("Setting Yaw zero = {0}", _leftHand.Roll);
+                            Calibrations.Yaw.Zero = _leftHand.Roll;
                             break;
                         case 1:
-                            Debug.WriteLine("Setting Yaw max = {0}", _rightHand.Yaw);
-                            Calibrations.Yaw.Max = _rightHand.Yaw;
+                            Debug.WriteLine("Setting Yaw max = {0}", _leftHand.Roll);
+                            Calibrations.Yaw.Max = _leftHand.Roll;
                             break;
                         case 2:
-                            Debug.WriteLine("Setting Yaw min = {0}", _rightHand.Yaw);
-                            Calibrations.Yaw.Min = _rightHand.Yaw;
+                            Debug.WriteLine("Setting Yaw min = {0}", _leftHand.Roll);
+                            Calibrations.Yaw.Min = _leftHand.Roll;
                             break;
                     }
 
