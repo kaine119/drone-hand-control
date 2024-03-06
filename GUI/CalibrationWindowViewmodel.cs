@@ -9,7 +9,6 @@ public class CalibrationWindowViewmodel : INotifyPropertyChanged
     private HandToRcConverter _handToRcConverter = new();
     private string _instructions = "";
 
-
     public HandTrackerAxisCalibrations Calibrations
     {
         get => _calibrations;
@@ -43,7 +42,7 @@ public class CalibrationWindowViewmodel : INotifyPropertyChanged
         }
     }
 
-    public RCValues RcValues { get; set; } = new();
+    public RCValues RcValues { get; } = new();
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

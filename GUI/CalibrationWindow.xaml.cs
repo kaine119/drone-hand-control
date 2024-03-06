@@ -188,4 +188,18 @@ public partial class CalibrationWindow : Window
         _currentField = 0;
         _vm.Instructions = _instructions[0];
     }
+
+    private void ExpoSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Calibrations.Roll.Expo = _vm.Calibrations.Roll.Expo;
+        Calibrations.Pitch.Expo = _vm.Calibrations.Pitch.Expo;
+        Calibrations.Yaw.Expo = _vm.Calibrations.Yaw.Expo;
+    }
+
+    private void ExpoSelect_OnClick(object sender, RoutedEventArgs e)
+    {
+        Calibrations.Roll.ApplyExpo = _vm.Calibrations.Roll.ApplyExpo;
+        Calibrations.Pitch.ApplyExpo = _vm.Calibrations.Pitch.ApplyExpo;
+        Calibrations.Yaw.ApplyExpo = _vm.Calibrations.Yaw.ApplyExpo;
+    }
 }

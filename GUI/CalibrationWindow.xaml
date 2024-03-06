@@ -10,8 +10,8 @@
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -22,7 +22,7 @@
 
         <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Header="Status">
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Center" FontSize="20"
-                       Text="{Binding Instructions}" Background="SlateGray" />
+                       Text="{Binding Instructions}" Background="SlateGray" Foreground="White" />
         </GroupBox>
 
         <GroupBox Grid.Row="2" Grid.Column="0" Header="Throttle + Yaw">
@@ -36,15 +36,35 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <ProgressBar Orientation="Vertical" Grid.Row="0" Grid.Column="0" Height="110" Width="20px"
                                  Value="{Binding RcValues.Throttle}"
-                                 HorizontalAlignment="Right"/>
+                                 HorizontalAlignment="Right" />
                     <ProgressBar Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Width="110" Height="20px"
                                  HorizontalAlignment="Left"
-                                 Value="{Binding RcValues.Yaw}"/>
+                                 Value="{Binding RcValues.Yaw}" />
+                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Visibility="Hidden">
+                            <Border BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock></TextBlock>
+                            </Border>
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <CheckBox Click="ExpoSelect_OnClick" IsChecked="{Binding Calibrations.Yaw.ApplyExpo}" VerticalAlignment="Center"
+                                      Margin="5" />
+
+                            <TextBlock VerticalAlignment="Center">Yaw Expo</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Yaw.Expo, StringFormat={}{0:0.0}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.1" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0.1" Maximum="5"
+                                    ValueChanged="ExpoSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Yaw.Expo}" VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
+                    </StackPanel>
                 </Grid>
             </DockPanel>
 
@@ -61,15 +81,45 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <ProgressBar Orientation="Vertical" Grid.Row="1" Grid.Column="0" Height="110" Width="20px"
+                    <ProgressBar Orientation="Vertical" Grid.Row="0" Grid.Column="0" Height="110" Width="20px"
                                  Value="{Binding RcValues.Pitch}"
-                                 HorizontalAlignment="Right"/>
-                    <ProgressBar Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Width="110" Height="20px"
+                                 HorizontalAlignment="Right" />
+                    <ProgressBar Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Width="110" Height="20px"
                                  HorizontalAlignment="Left"
-                                 Value="{Binding RcValues.Roll}"/>
+                                 Value="{Binding RcValues.Roll}" />
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <CheckBox Click="ExpoSelect_OnClick" IsChecked="{Binding Calibrations.Pitch.ApplyExpo}" VerticalAlignment="Center"
+                                      Margin="5" />
+                            <TextBlock VerticalAlignment="Center" Width="60">Pitch Expo</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Pitch.Expo, StringFormat={}{0:0.0}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.1" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0.1" Maximum="5"
+                                    ValueChanged="ExpoSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Pitch.Expo}" VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
+
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <CheckBox Click="ExpoSelect_OnClick" IsChecked="{Binding Calibrations.Roll.ApplyExpo}" VerticalAlignment="Center"
+                                      Margin="5" />
+                            <TextBlock VerticalAlignment="Center" Width="60">Roll Expo</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Roll.Expo, StringFormat={}{0:0.0}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.1" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0.1" Maximum="5"
+                                    ValueChanged="ExpoSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Roll.Expo}"
+                                    VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
+                    </StackPanel>
                 </Grid>
             </DockPanel>
         </GroupBox>
