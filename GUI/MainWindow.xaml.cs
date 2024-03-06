@@ -113,7 +113,7 @@ public partial class MainWindow
 
     private void OpenCalibrationWindow_ButtonOnClick(object sender, RoutedEventArgs e)
     {
-        var window = new CalibrationWindow();
+        var window = new CalibrationWindow(_handToRcConverter.Calibrations);
         window.ShowDialog();
         _handToRcConverter.Calibrations = window.Calibrations;
     }
