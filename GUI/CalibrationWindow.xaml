@@ -51,6 +51,42 @@
                             </Border>
                         </DockPanel>
                         <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <TextBlock VerticalAlignment="Center">Throttle Deadband</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Throttle.Deadband, StringFormat={}{0:0.00}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.01" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0" Maximum="1"
+                                    ValueChanged="DeadzoneSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Throttle.Deadband}" VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <CheckBox Click="ExpoSelect_OnClick" IsChecked="{Binding Calibrations.Throttle.ApplyExpo}" VerticalAlignment="Center"
+                                      Margin="5" />
+
+                            <TextBlock VerticalAlignment="Center">Throttle Expo</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Throttle.Expo, StringFormat={}{0:0.0}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.1" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0.1" Maximum="5"
+                                    ValueChanged="ExpoSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Throttle.Expo}" VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <TextBlock VerticalAlignment="Center">Yaw Deadband</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Yaw.Deadband, StringFormat={}{0:0.00}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.01" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0" Maximum="1"
+                                    ValueChanged="DeadzoneSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Yaw.Deadband}" VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
                             <CheckBox Click="ExpoSelect_OnClick" IsChecked="{Binding Calibrations.Yaw.ApplyExpo}" VerticalAlignment="Center"
                                       Margin="5" />
 
@@ -104,6 +140,18 @@
                                     Value="{Binding Calibrations.Pitch.Expo}" VerticalAlignment="Center">
                             </Slider>
                         </DockPanel>
+                        
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <TextBlock VerticalAlignment="Center">Pitch Deadband</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Pitch.Deadband, StringFormat={}{0:0.00}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.01" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0" Maximum="1"
+                                    ValueChanged="DeadzoneSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Pitch.Deadband}" VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
 
                         <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
                             <CheckBox Click="ExpoSelect_OnClick" IsChecked="{Binding Calibrations.Roll.ApplyExpo}" VerticalAlignment="Center"
@@ -117,6 +165,17 @@
                                     ValueChanged="ExpoSlider_OnValueChanged"
                                     Value="{Binding Calibrations.Roll.Expo}"
                                     VerticalAlignment="Center">
+                            </Slider>
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <TextBlock VerticalAlignment="Center">Roll Deadband</TextBlock>
+                            <Border BorderBrush="Black" BorderThickness="1" Padding="1" Margin="5">
+                                <TextBlock Text="{Binding Calibrations.Roll.Deadband, StringFormat={}{0:0.00}}"></TextBlock>
+                            </Border>
+                            <Slider TickFrequency="0.01" TickPlacement="TopLeft" IsSnapToTickEnabled="True"
+                                    Minimum="0" Maximum="1"
+                                    ValueChanged="DeadzoneSlider_OnValueChanged"
+                                    Value="{Binding Calibrations.Roll.Deadband}" VerticalAlignment="Center">
                             </Slider>
                         </DockPanel>
                     </StackPanel>

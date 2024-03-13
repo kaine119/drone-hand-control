@@ -201,5 +201,14 @@ public partial class CalibrationWindow : Window
         Calibrations.Roll.ApplyExpo = _vm.Calibrations.Roll.ApplyExpo;
         Calibrations.Pitch.ApplyExpo = _vm.Calibrations.Pitch.ApplyExpo;
         Calibrations.Yaw.ApplyExpo = _vm.Calibrations.Yaw.ApplyExpo;
+        Calibrations.Throttle.ApplyExpo = _vm.Calibrations.Throttle.ApplyExpo;
+    }
+
+    private void DeadzoneSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Calibrations.Roll.Deadband = _vm.Calibrations.Roll.Deadband;
+        Calibrations.Pitch.Deadband = _vm.Calibrations.Pitch.Deadband;
+        Calibrations.Yaw.Deadband = _vm.Calibrations.Yaw.Deadband;
+        Calibrations.Throttle.Deadband = _vm.Calibrations.Throttle.Deadband;
     }
 }
