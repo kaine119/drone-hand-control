@@ -56,7 +56,7 @@ public record AxisCalibration : INotifyPropertyChanged
         }
         else
         {
-            var fraction = (value - Zero) / (Max - Zero); // within [0, 1]
+            var fraction = (value - Zero) / (Min - Zero); // within [0, 1]
             var scaleFactor = 50 / (Math.Exp(Expo) - 1);
             return 50 - (int)Math.Round(scaleFactor * (Math.Exp(Expo * fraction) - 1), 0);
         }
