@@ -63,7 +63,11 @@
                         <TextBlock Text="Grab" HorizontalAlignment="Center" />
                         <ProgressBar Orientation="Horizontal"  Width="150" Height="20px"
                                      Value="{Binding RcValues.Grab}" />
+                        <TextBlock Text="Cam" HorizontalAlignment="Center" />
+                        <ProgressBar Orientation="Horizontal"  Width="150" Height="20px"
+                                     Value="{Binding RcValues.Cam}" />
                     </StackPanel>
+                    
                     
                     
                 </Grid>
