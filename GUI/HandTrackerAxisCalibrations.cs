@@ -13,7 +13,7 @@ public record AxisCalibration : INotifyPropertyChanged
 
     private bool _applyExpo = false;
     private float _expo = 1.5f;
-    private float _deadband = 0f;
+    private float _deadband = 0.25f;
 
     public float Expo
     {
